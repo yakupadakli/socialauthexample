@@ -1,0 +1,60 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="keywords" content="social, auth, django">
+  <meta name="description" content="Yakup Adaklı Social Auth Example">
+  <meta name="author" content="Yakup Adaklı">
+
+  <title>Social Auth Example</title>
+
+  <!-- Include stylesheets here -->
+  <link href="{% static 'css/social-bootstrap.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'css/style1.css' %}" rel="stylesheet" media="screen">
+
+  <link href="{% static 'css/icons-color.css' %}" rel="stylesheet" media="screen">
+
+  <link href="{% static 'css/zocial.css' %}" rel="stylesheet" media="screen">
+
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" media="screen">
+
+</head>
+
+<body>
+<div class='topbar' id='login_topbar'>
+  <div class='topbar-inner' id='login_topbar_inner'>
+    {% include '' %}
+  </div>
+</div>
+
+<div class="container-fluid below_topbar">
+  <div class='row-fluid below_loginbar'>
+    <div class='span5 offset1'>
+      <img src="{% static 'img/logo.png' %}" style="width : 600px; height : auto;"/>
+    </div>
+    <div class='span5 offset'>
+      <div class='row-fluid'>
+        <div class='span8 offset2'>
+          <p>
+            <h3 class="center"> Hello ! Use these to login easily</h3>  <br/><br/>
+            <div class="center muted"> You need to associate these account first ...</div>
+            <br/>
+            <a class='zocial facebook full_width' href="/login/facebook/?next=/">Sign in with Facebook</a>
+            <br/>
+            <a class='zocial google full_width' href="/login/google-oauth2/?next=/">Sign in with Google</a>
+            <br/>
+            <a class="zocial twitter full_width" href="/login/twitter/?next=/">Sign in with Twitter</a>
+            <br/>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
