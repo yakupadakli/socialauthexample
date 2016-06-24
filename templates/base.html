@@ -28,7 +28,9 @@
 <body>
 <div class='topbar' id='login_topbar'>
   <div class='topbar-inner' id='login_topbar_inner'>
-    {% include 'header.html' %}
+    {% if user and user.is_anonymous %}
+      {% include 'header.html' %}
+    {% endif %}
   </div>
 </div>
 
@@ -41,15 +43,32 @@
       <div class='row-fluid'>
         <div class='span8 offset2'>
           <p>
-            <h3 class="center"> Hello ! Use these to login easily</h3>  <br/><br/>
-            <div class="center muted"> You need to associate these account first ...</div>
-            <br/>
-            <a class='zocial facebook full_width' href="/login/facebook/?next=/">Sign in with Facebook</a>
-            <br/>
-            <a class='zocial google full_width' href="/login/google-oauth2/?next=/">Sign in with Google</a>
-            <br/>
-            <a class="zocial twitter full_width" href="/login/twitter/?next=/">Sign in with Twitter</a>
-            <br/>
+            {% if user and not user.is_anonymous %}
+              <h3 class="center">
+                {% trans 'Hello ! ' %} {{ user.get_full_name|default:user.username }}
+              </h3>  <br/><br/>
+              <div class="center muted">
+                <a href="{% url 'auth:logout' %}?next={{ request.path }}">
+                  {% trans 'Logout' %}
+                </a>
+              </div>
+            {% else %}
+              <h3 class="center"> {% trans 'Hello ! Use these to login easily' %}</h3>  <br/><br/>
+              <div class="center muted"> {% trans 'You need to associate these account first ...' %}</div>
+              <br/>
+              <a class='zocial facebook full_width' href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+                {% trans 'Sign in with Facebook' %}
+              </a>
+              <br/>
+              <a class='zocial twitter full_width' href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">
+                {% trans 'Sign in with Twitter' %}
+              </a>
+              <br/>
+              <a class='zocial google full_width' href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+                {% trans 'Sign in with Google' %}
+              </a>
+              <br/>
+            {% endif %}
           </p>
         </div>
       </div>
