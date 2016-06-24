@@ -3,24 +3,24 @@
 <div class='container-fluid'>
   <div class='row-fluid' id='login_row'>
     <div class='span4 offset1'>
-      <a class='brand big_brand bold' href='/se'>Yakup Adaklı</a>
+      <a class='brand big_brand bold' href='{% url 'index' %}'>Yakup Adaklı</a>
     </div>
     <div class='span6' id='login_box'>
       <form class='span9 pull-right' action='' method='POST' id='login_form' autocomplete="on">
         {% csrf_token %}
         <div class='span5 input_box'>
-          <label for='id_username'>Email ID</label><br/>
+          <label for='id_username'>{% trans 'Email ID' %}</label><br/>
           <input type='text' name='username' id='id_username' required='true' autofocus class='input-large' value=''>
           <br/>
         </div>
         <div class='span5 input_box'>
           <label for='id_password'>Password</label><br/>
           <input type='password' name='password' id='id_password' placeholder='Password' required='true' class='input-large' value=''><br/>
-          <a id='forgot_passwd' href='/password_reset/'>Forgotten Password</a>
+          <a id='forgot_passwd' href='/password_reset/'>{% trans 'Forgotten Password' %}</a>
         </div>
         <div class='span2 submit_box'>
           <label for="id_submit"></label><br/>
-          <a href='#' id="id_submit" class='btn primary static small'>Log in</a>
+          <a href='#' id="id_submit" class='btn primary static small'>{% trans 'Log in' %}</a>
         </div>
       </form>
     </div>
